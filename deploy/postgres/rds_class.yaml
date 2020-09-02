@@ -1,0 +1,25 @@
+---
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: RDSInstanceClass
+metadata:
+  name: mase-postgres
+  labels:
+    example: "true"
+    engine: postgresql
+specTemplate:
+  forProvider:
+    dbInstanceClass: db.t2.small
+    masterUsername: masteruser
+    dbName: postgres
+    vpcSecurityGroupIDRefs:
+      - name: mase-cluster-sg
+    dbSubnetGroupNameRef:
+      name: mase-rds-sg
+    allocatedStorage: 20
+    engine: postgresql
+    skipFinalSnapshotBeforeDeletion: true
+  writeConnectionSecretsToNamespace: crossplane
+  providerRef:
+    name: aws-provider
+  reclaimPolicy: Delete 
+    

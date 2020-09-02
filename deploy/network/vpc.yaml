@@ -1,0 +1,19 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: VPC
+metadata:
+  name: mase-vpc
+spec:
+  forProvider:
+    cidrBlock: 10.2.0.0/16
+    enableDnsSupport: true
+    enableDnsHostNames: false
+    instanceTenancy: default
+    tags:
+      - key: Name
+        value: Crossplane VPC
+      - key: mase/crossplane
+        value: owner
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider

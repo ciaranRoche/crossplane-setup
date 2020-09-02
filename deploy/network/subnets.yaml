@@ -1,0 +1,38 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: mase-postgresql-1
+spec:
+  forProvider:
+    cidrBlock: 10.2.0.0/17
+    vpcIdRef:
+      name: mase-vpc
+    availabilityZone: eu-west-1a
+    tags:
+      - key: Name
+        value: Crossplane Subnet 1
+      - key: mase/crossplane
+        value: owned
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: Subnet
+metadata:
+  name: mase-postgresql-2
+spec:
+  forProvider:
+    cidrBlock: 10.2.128.0/17
+    vpcIdRef:
+      name: mase-vpc
+    availabilityZone: eu-west-1b
+    tags:
+      - key: Name
+        value: Crossplane Subnet 2
+      - key: mase/crossplane
+        value: owned
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider

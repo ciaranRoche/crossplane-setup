@@ -1,0 +1,19 @@
+---
+apiVersion: database.aws.crossplane.io/v1beta1
+kind: DBSubnetGroup
+metadata:
+  name: mase-rds-sg
+spec:
+  forProvider:
+    description: postgres subnets
+    subnetIdRefs:
+      - name: mase-postgresql-1
+      - name: mase-postgresql-2
+    tags:
+      - key: Name
+        value: Crossplane Custom Subnet Group
+      - key: mase/crossplane
+        value: owned
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider

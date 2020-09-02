@@ -1,0 +1,14 @@
+---
+apiVersion: cache.aws.crossplane.io/v1alpha1
+kind: CacheSubnetGroup
+metadata:
+  name: mase-elasticache-sg
+spec:
+  forProvider:
+    description: redis subnets
+    subnetIds:
+      - subnet-0f7e480834697627c
+      - subnet-0e6e78f00f7a77f4e
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider

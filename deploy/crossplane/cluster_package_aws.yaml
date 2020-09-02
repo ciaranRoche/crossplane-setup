@@ -1,0 +1,8 @@
+---
+apiVersion: packages.crossplane.io/v1alpha1
+kind: ClusterPackageInstall
+metadata:
+  name: provider-aws
+  namespace: crossplane
+spec:
+  package: "crossplane/provider-aws:v0.11.1"

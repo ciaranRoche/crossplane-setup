@@ -1,0 +1,27 @@
+---
+apiVersion: cache.aws.crossplane.io/v1beta1
+kind: ReplicationGroup
+metadata:
+  name: mase-cache
+  labels:
+    example: "true"
+spec:
+  forProvider:
+    replicationGroupDescription: "a mase replication group provisioned by crossplane"
+    applyModificationsImmediately: true
+    engine: "redis"
+    engineVersion: "5.0.6"
+    port: 6379
+    cacheSubnetGroupName: mase-elasticache-sg
+    numCacheClusters: 2
+    cacheParameterGroupName: default.redis5.0
+    cacheNodeType: cache.t3.medium
+    automaticFailoverEnabled: true
+    # cacheSecurityGroupNameRefs: 
+    #   - name: mase-cluster-sg
+  writeConnectionSecretToRef:
+    name: redis-conn
+    namespace: crossplane
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider

@@ -1,0 +1,30 @@
+---
+apiVersion: ec2.aws.crossplane.io/v1beta1
+kind: SecurityGroup
+metadata:
+  name: mase-cluster-sg
+spec:
+  forProvider:
+    vpcIdRef:
+      name: mase-vpc  
+    groupName: mase-cluster-sg
+    description: mase security group provisioned by crossplane
+    tags:
+      - key: Name
+        value: Crossplane SG
+      - key: mase/crossplane
+        value: owner
+    ingress:
+      - fromPort: 0
+        toPort: 65535
+        ipProtocol: tcp
+        ipRanges:
+          - cidrIp: 10.0.0.0/16
+      - fromPort: 0
+        toPort: 65535
+        ipProtocol: udp
+        ipRanges:
+          - cidrIp: 10.0.0.0/16
+  reclaimPolicy: Delete
+  providerRef:
+    name: aws-provider
