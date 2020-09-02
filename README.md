@@ -1,6 +1,11 @@
 # Crossplane Setup 
 
 ## Pre-req
+Get the cluster ID
+```
+CLUSTERID=$(oc get infrastructure cluster -o json | jq -r .status.infrastructureName)
+CLUSTERTAG="kubernetes.io/cluster/$CLUSTERID"
+```
 Create crossplane namespace
 ```
 oc new-project crossplane
@@ -70,6 +75,11 @@ aws ec2 describe-vpcs --filters Name=tag-key,Values=mase/crossplane | jq
 ```
 
 ## Setup Security Group
+Get the Cluster VPC CIDR Block
+```
+aws ec2 describe-vpcs --filters Name=tag-key,Values=$CLUSTERTAG | jq
+```
+Update the security group such that it contains the cluster vpc cidr
 ```
 oc apply -f deploy/network/security_group.yaml
 ```
