@@ -1,0 +1,11 @@
+apiVersion: storage.crossplane.io/v1alpha1
+kind: Bucket
+metadata:
+  name: mase-app-bucket
+spec:
+  classSelector:
+    matchLabels:
+      mase: "true"
+  name: mase-bucket-example
+  writeConnectionSecretToRef:
+    name: bucket-conn

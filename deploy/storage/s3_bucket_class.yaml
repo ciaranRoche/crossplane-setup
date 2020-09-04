@@ -1,0 +1,16 @@
+---
+apiVersion: storage.aws.crossplane.io/v1alpha3
+kind: S3BucketClass
+metadata:
+  name: mase-s3bucket
+  labels:
+    mase: "true"
+specTemplate:
+  writeConnectionSecretsToNamespace: crossplane
+  versioning: false
+  cannedACL: private
+  region: eu-west-1
+  localPermission: ReadWrite
+  providerRef:
+    name: aws-provider
+  reclaimPolicy: Delete

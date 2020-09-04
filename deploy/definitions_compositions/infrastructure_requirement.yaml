@@ -1,0 +1,14 @@
+apiVersion: database.example.org/v1alpha1
+kind: PostgreSQLInstanceRequirement
+metadata:
+  name: mase-postgres-db
+  namespace: crossplane
+spec:
+  parameters:
+    storageGB: 20
+  compositionSelector:
+    matchLabels:
+      provider: aws
+      vpc: default
+  writeConnectionSecretToRef:
+    name: db-conn

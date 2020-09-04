@@ -149,3 +149,13 @@ oc apply -f deploy/postgres/rds_claim.yaml
 ```
 oc apply -f deploy/redis/cache_replication_group.yaml
 ```
+
+## Provision S3 Bucket
+Create a class
+```
+oc deploy -f deploy/storage/s3_bucket_class.yaml
+```
+Create a claim
+```
+oc deploy -f deploy/storage/s3_bucket_claim.yaml
+```

@@ -19,12 +19,12 @@ spec:
         toPort: 65535
         ipProtocol: tcp
         ipRanges:
-          - cidrIp: 10.0.0.0/16
+          - cidrIp: 10.11.128.0/23
       - fromPort: 0
         toPort: 65535
         ipProtocol: udp
         ipRanges:
-          - cidrIp: 10.0.0.0/16
+          - cidrIp: 10.11.128.0/23
   reclaimPolicy: Delete
   providerRef:
     name: aws-provider

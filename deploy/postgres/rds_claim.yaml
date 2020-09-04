@@ -9,5 +9,5 @@ spec:
       example: "true"
       engine: postgresql
   writeConnectionSecretToRef:
-    name: postgresqlconn
+    name: postgresql-conn
   engineVersion: "9.6"
